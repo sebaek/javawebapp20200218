@@ -1,6 +1,7 @@
 package app.controller.member;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import app.bean.Member;
+import app.repository.MemberRepo;
 
 /**
  * Servlet implementation class SingUpServlet
@@ -19,6 +21,15 @@ public class SignUpServlet extends HttpServlet {
 	// view path
 	private final String view = "/WEB-INF/view/member/signup.jsp";
        
+	// repo instance
+	private MemberRepo repo;
+	
+	@Override
+	public void init() throws ServletException {
+		super.init();
+		this.repo = new MemberRepo();
+	}
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -48,8 +59,14 @@ public class SignUpServlet extends HttpServlet {
 		member.setPassword(pw);
 		
 		// db에 insert하고
+		boolean ok = repo.addMember(member);
 		
 		// forward or redirect
+		if (ok) {
+			response.sendRedirect(request.getContextPath() + "/");
+		} else {
+			request.getRequestDispatcher(view).forward(request, response);
+		}
 		
 	}
 
