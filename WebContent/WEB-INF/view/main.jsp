@@ -11,16 +11,23 @@
 <body>
 <h1>메인 페이지</h1>
 
-<div>
-<c:url value="/member/signup" var="signupUrl"/>
-<a href="${signupUrl }">회원가입</a>
-
-</div>
-
-<div>
-<c:url value="/member/login" var="loginUrl"/>
-<a href="${loginUrl }">로그인</a>
-</div>
+<c:if test="${empty loginUser }">
+	<div>
+	<c:url value="/member/signup" var="signupUrl"/>
+	<a href="${signupUrl }">회원가입</a>
+	</div>
+	
+	<div>
+	<c:url value="/member/login" var="loginUrl"/>
+	<a href="${loginUrl }">로그인</a>
+	</div>
+</c:if>
+<c:if test="${not empty loginUser }">
+	<div>
+	<c:url value="/member/logout" var="logoutUrl"/>
+	<a href="${logoutUrl }">로그아웃</a>
+	</div>
+</c:if>
 </body>
 </html>
 
