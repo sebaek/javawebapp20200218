@@ -6,28 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/view/jspf/pageHeader.jsp" %>
-<title>Insert title here</title>
+<title>로그인</title>
 </head>
 <body>
-<h1>메인 페이지</h1>
-
+<h1>로그인</h1>
 <div>
-<c:url value="/member/signup" var="signupUrl"/>
-<a href="${signupUrl }">회원가입</a>
-
+<form method="post">
+<input name="memberId" placeholder="아이디"><br>
+<input name="password" placeholder="패스워드" type="password"><br>
+<input type="submit" value="로그인">
+</form>
+</div>
+<div>
+${message }
 </div>
 
-<div>
-<c:url value="/member/login" var="loginUrl"/>
-<a href="${loginUrl }">로그인</a>
-</div>
 </body>
 </html>
-
-
-
-
-
 
 
 
