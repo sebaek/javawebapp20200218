@@ -22,7 +22,13 @@
 	<a href="${loginUrl }">로그인</a>
 	</div>
 </c:if>
+
 <c:if test="${not empty loginUser }">
+	<div>
+	<c:url value="/member/view" var="memberViewUrl" />
+	<a href="${memberViewUrl }">내정보</a>
+	</div>
+	
 	<div>
 	<c:url value="/member/logout" var="logoutUrl"/>
 	<a href="${logoutUrl }">로그아웃</a>
