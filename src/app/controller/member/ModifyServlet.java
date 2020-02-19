@@ -58,11 +58,6 @@ public class ModifyServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String nickName = request.getParameter("nickName");
 		
-		System.out.println(id);
-		System.out.println(pw);
-		System.out.println(email);
-		System.out.println(nickName);
-		
 		Member member = new Member();
 		member.setMemberId(id);
 		member.setPassword(pw);
