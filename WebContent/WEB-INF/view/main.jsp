@@ -39,6 +39,29 @@
 	<a href="${logoutUrl }">로그아웃</a>
 	</div>
 </c:if>
+
+<h1>게시물 목록</h1>
+<div>
+<table>
+<tr>
+	<th>id</th>
+	<th>제목</th>
+	<th>작성자</th>
+	<th>작성일시</th>
+</tr>
+<c:forEach items="${boardList }" var="board">
+<tr>
+	<td>${board.id }</td>
+	<td>${board.title }</td>
+	<td>${board.memberId }</td>
+	<td>${board.inserted }</td>
+</tr>
+</c:forEach>
+
+</table>
+</div>
+
+
 </body>
 </html>
 
