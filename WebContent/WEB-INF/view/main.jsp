@@ -25,6 +25,11 @@
 
 <c:if test="${not empty loginUser }">
 	<div>
+	<c:url value="/board/add" var="boardAddUrl" />
+	<a href="${boardAddUrl }">글쓰기</a>
+	</div>
+
+	<div>
 	<c:url value="/member/view" var="memberViewUrl" />
 	<a href="${memberViewUrl }">내정보</a>
 	</div>
