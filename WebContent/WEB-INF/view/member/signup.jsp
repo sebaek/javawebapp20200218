@@ -28,8 +28,10 @@ $(function() {
 <div>
 <form method="post">
 <input name="memberId" placeholder="아이디"><br>
-<input id="pw1" name="password" type="password" placeholder="패스워드">
+<input id="pw1" name="password" type="password" placeholder="패스워드"><br>
 <input id="pw2" type="password" placeholder="패스워드확인"><br>
+<input name="email" type="email" placeholder="이메일"><br>
+<input name="nickName" placeholder="별명"><br>
 <input type="submit" value="가입">
 </form>
 </div>

@@ -9,8 +9,9 @@ import app.bean.Member;
 public class MemberRepo {
 	
 	public boolean addMember(Member member) {
-		String sql = "INSERT INTO member (memberid, password) "
-				+ "VALUES (?, ?) ";
+		String sql = "INSERT INTO member "
+				+ "(memberid, password, email, nickname) "
+				+ "VALUES (?, ?, ?, ?) ";
 		
 		try (
 			Connection con = DBCP.getConnection();
@@ -18,6 +19,9 @@ public class MemberRepo {
 		) {
 			stmt.setString(1, member.getMemberId());
 			stmt.setString(2, member.getPassword());
+			stmt.setString(3, member.getEmail());
+			stmt.setString(4, member.getNickName());
+			
 			int cnt = stmt.executeUpdate();
 			if (cnt != 1) {
 				return false;
@@ -33,7 +37,8 @@ public class MemberRepo {
 
 	public Member getMember(String id, String pw) {
 		Member member = null;
-		String sql = "SELECT memberid, password "
+		String sql = "SELECT "
+				+ "memberid, password, email, nickname "
 				+ "FROM member "
 				+ "WHERE memberid=? "
 				+ "AND password=? ";
@@ -51,6 +56,8 @@ public class MemberRepo {
 				member = new Member();
 				member.setMemberId(id);
 				member.setPassword(pw);
+				member.setEmail(rs.getString(3));
+				member.setNickName(rs.getString(4));
 			}
 			
 		} catch (Exception e) {

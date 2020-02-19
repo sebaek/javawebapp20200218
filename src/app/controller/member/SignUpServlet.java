@@ -52,11 +52,15 @@ public class SignUpServlet extends HttpServlet {
 		// request parameter 받아서
 		String id = request.getParameter("memberId");
 		String pw = request.getParameter("password");
+		String email = request.getParameter("email");
+		String nickName = request.getParameter("nickName");
 		
 		// Member bean만들고
 		Member member = new Member();
 		member.setMemberId(id);
 		member.setPassword(pw);
+		member.setEmail(email);
+		member.setNickName(nickName);
 		
 		// db에 insert하고
 		boolean ok = repo.addMember(member);

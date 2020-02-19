@@ -12,6 +12,8 @@
 <h1>회원 정보</h1>
 id : ${loginUser.memberId }<br>
 pw : ${loginUser.password }<br>
+email : ${loginUser.email }<br>
+nick : ${loginUser.nickName }<br>
 </body>
 </html>
 
