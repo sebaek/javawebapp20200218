@@ -50,9 +50,12 @@
 	<th>작성일시</th>
 </tr>
 <c:forEach items="${boardList }" var="board">
+  <c:url value="/board/view" var="link">
+  	<c:param name="id" value="${board.id }" />
+  </c:url>
 <tr>
 	<td>${board.id }</td>
-	<td>${board.title }</td>
+	<td><a href="${link }">${board.title }</a></td>
 	<td>${board.memberId }</td>
 	<td>${board.inserted }</td>
 </tr>

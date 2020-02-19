@@ -69,6 +69,37 @@ public class BoardRepo {
 		return list;
 	}
 
+	public Board getBoardById(String id) {
+		Board board = null;
+		String sql = "SELECT title, body, memberid, inserted "
+				+ "FROM board "
+				+ "WHERE id=?";
+		
+		try (
+			Connection con = DBCP.getConnection();
+			PreparedStatement stmt = con.prepareStatement(sql);
+		) {
+			stmt.setLong(1, Long.valueOf(id));
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				board = new Board();
+				board.setId(Long.valueOf(id));
+				board.setTitle(rs.getString(1));
+				board.setBody(rs.getString(2));
+				board.setMemberId(rs.getString(3));
+				board.setInserted(rs.getDate(4));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return board;
+	}
+
 }
 
 
