@@ -66,6 +66,30 @@ public class MemberRepo {
 		
 		return member;
 	}
+
+	public void modifyMember(Member member) {
+		String sql = "UPDATE member "
+				+ "SET password=? "
+				+ "  , email=? "
+				+ "  , nickname=? "
+				+ "WHERE memberid=? ";
+		try (
+			Connection con = DBCP.getConnection();
+			PreparedStatement stmt = con.prepareStatement(sql);
+		) {
+			stmt.setString(1, member.getPassword());
+			stmt.setString(2, member.getEmail());
+			stmt.setString(3, member.getNickName());
+			stmt.setString(4, member.getMemberId());
+			
+			stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 }
 
 
