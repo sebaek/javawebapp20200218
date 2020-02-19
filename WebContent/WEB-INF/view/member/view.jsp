@@ -37,6 +37,9 @@ $(function() {
 </form>
 </div>
 
+<c:url value="/member/delete" var="memberDeleteUrl" />
+<a href="${memberDeleteUrl }">회원 탈퇴</a>
+
 <div id="message"></div>
 </body>
 </html>

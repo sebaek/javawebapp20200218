@@ -90,6 +90,31 @@ public class MemberRepo {
 		
 		
 	}
+
+	public boolean deleteMember(String id, String pw) {
+		String sql = "DELETE FROM member "
+				+ "WHERE memberid=? "
+				+ "  AND password=? ";
+		
+		try (
+			Connection con = DBCP.getConnection();
+			PreparedStatement stmt = con.prepareStatement(sql);
+		) {
+			stmt.setString(1, id);
+			stmt.setString(2, pw);
+			
+			int cnt = stmt.executeUpdate();
+			
+			if (cnt != 1) {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return true;
+	}
 }
 
 
