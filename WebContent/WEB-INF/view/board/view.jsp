@@ -68,7 +68,7 @@ ${board.body }
 	
 	<c:if test="${loginUser.memberId eq reply.memberId }">
 	<div>
-		<form action="../reply/delete" method="post">
+		<form onsubmit="return confirm('삭제하시겠습니까?')" action="../reply/delete" method="post">
 			<input name="boardId" value="${reply.boardId }" type="hidden">
 			<input name="replyId" value="${reply.id }" type="hidden">
 			<input value="삭제" type="submit">
