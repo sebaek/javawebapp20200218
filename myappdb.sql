@@ -30,5 +30,11 @@ create table reply
     memberid varchar(255) not null,
     inserted date default sysdate
 );
+select * from reply order by id desc;
+
+alter table board
+add (
+    fileName varchar(255)
+);
 
 
