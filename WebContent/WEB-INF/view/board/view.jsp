@@ -46,6 +46,17 @@ ${board.body }
 </div>
 </c:if>
 
+<c:if test="${not empty loginUser }">
+<c:url value="/reply/add" var="replyAddUrl" />
+<div>
+<form action="${replyAddUrl }" method="post">
+<input type="hidden" name="boardId" value="${board.id }">
+<input name="body" >
+<input type="submit" value="댓글">
+</form>
+
+</div>
+</c:if>
 
 
 
