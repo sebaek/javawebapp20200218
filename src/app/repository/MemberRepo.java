@@ -45,7 +45,7 @@ public class MemberRepo {
 
 		try (
 			Connection con = DBCP.getConnection();
-			PreparedStatement stmt = con.prepareCall(sql)) {
+			PreparedStatement stmt = con.prepareStatement(sql)) {
 			
 			stmt.setString(1, id);
 			stmt.setString(2, pw);
