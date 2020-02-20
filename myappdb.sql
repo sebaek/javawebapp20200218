@@ -22,3 +22,13 @@ create table board
 
 select * from board order by id desc;
 
+create table reply
+(
+    id number generated ALWAYS AS IDENTITY PRIMARY key,
+    body varchar(255) not null,
+    boardid number not null,
+    memberid varchar(255) not null,
+    inserted date default sysdate
+);
+
+
