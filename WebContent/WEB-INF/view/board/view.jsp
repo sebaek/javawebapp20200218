@@ -7,6 +7,16 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/view/jspf/pageHeader.jsp" %>
 <title>Insert title here</title>
+<script>
+$(function() {
+	$("#board-delete-button").click(function() {
+		$("#board-delete-form").toggle();
+	});
+});
+
+</script>
+
+
 </head>
 <body>
 <h1>게시물 보기</h1>
@@ -18,8 +28,29 @@ ${board.id } : ${board.title }
 <textarea rows="5" cols="20" readonly>
 ${board.body }
 </textarea>
+</div>
+<c:if test="${loginUser.memberId eq board.memberId }">
+<div>
+	<button id="board-delete-button">삭제</button>
+	<div id="board-delete-form" style="display:none;">
+		<form action="delete" method="post">
+			<input name="id" value="${board.id }" type="hidden">
+			<input name="password" type="password" placeholder="패스워드">
+			<input type="submit" value="확인">
+		</form>
+	</div>
 
 </div>
+</c:if>
+
+
+
+
+
+
+
+
+
 </body>
 </html>
 
