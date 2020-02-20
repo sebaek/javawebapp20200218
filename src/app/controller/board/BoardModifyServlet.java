@@ -78,7 +78,7 @@ public class BoardModifyServlet extends HttpServlet {
 		// forward or redirect
 		if (ok) {
 			response.sendRedirect(request.getContextPath() 
-					+ "/view?id=" + id);
+					+ "/board/view?id=" + id);
 		} else {
 			request.setAttribute("board", board);
 			request.getRequestDispatcher(view).forward(request, response);
