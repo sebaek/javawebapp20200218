@@ -58,11 +58,15 @@ ${board.body }
 </div>
 </c:if>
 
-
-
-
-
-
+<div>
+<c:forEach items="${replyList }" var="reply">
+<span>${reply.body }</span>
+|
+<span>${reply.memberId }</span>
+|
+<span>${reply.inserted }</span><br>
+</c:forEach>
+</div>
 
 
 </body>

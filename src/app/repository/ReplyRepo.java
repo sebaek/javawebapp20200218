@@ -2,6 +2,9 @@ package app.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import app.bean.Reply;
 
@@ -32,5 +35,54 @@ public class ReplyRepo {
 		
 		return true;
 	}
+
+	public List<Reply> listReply(String id) {
+		List<Reply> list = new ArrayList<>();
+		
+		String sql = "SELECT id, body, memberid, "
+				+ "          boardid, inserted "
+				+ "   FROM reply"
+				+ "   WHERE boardid=?"
+				+ "   ORDER BY id DESC";
+		
+		try (
+				Connection con = DBCP.getConnection();
+				PreparedStatement stmt = con.prepareStatement(sql);
+		) {
+			stmt.setLong(1, Long.valueOf(id));
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Reply r = new Reply();
+				r.setId(rs.getLong(1));
+				r.setBody(rs.getString(2));
+				r.setMemberId(rs.getString(3));
+				r.setBoardId(rs.getLong(4));
+				r.setInserted(rs.getDate(5));
+				
+				list.add(r);
+			}
+			
+		} catch (Exception e) {
+			
+		}
+		
+		
+		return list;
+	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

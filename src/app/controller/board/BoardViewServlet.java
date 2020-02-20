@@ -1,6 +1,7 @@
 package app.controller.board;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import app.bean.Board;
+import app.bean.Reply;
 import app.repository.BoardRepo;
+import app.repository.ReplyRepo;
 
 /**
  * Servlet implementation class BoardViewServlet
@@ -22,12 +25,14 @@ public class BoardViewServlet extends HttpServlet {
 	private final String view = "/WEB-INF/view/board/view.jsp";
 	
 	// repos
-	private BoardRepo repo;
+	private BoardRepo boardRepo;
+	private ReplyRepo replyRepo;
 	
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		repo = new BoardRepo();
+		boardRepo = new BoardRepo();
+		replyRepo = new ReplyRepo();
 	}
        
     /**
@@ -46,10 +51,14 @@ public class BoardViewServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		
 		// board를 db에서 읽어서
-		Board board = repo.getBoardById(id);
+		Board board = boardRepo.getBoardById(id);
+		
+		// reply들을 읽어서
+		List<Reply> replyList = replyRepo.listReply(id);
 		
 		// request attribute에 넣고
 		request.setAttribute("board", board);
+		request.setAttribute("replyList", replyList);
 		
 		// forward
 		request.getRequestDispatcher(view).forward(request, response);
