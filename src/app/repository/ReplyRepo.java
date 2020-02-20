@@ -71,6 +71,24 @@ public class ReplyRepo {
 		
 		return list;
 	}
+
+	public void deleteReply(String replyId, String memberId) {
+		String sql = "DELETE FROM reply "
+				+ "WHERE id=? "
+				+ "AND memberid=? ";
+		try (
+				Connection con = DBCP.getConnection();
+				PreparedStatement stmt = con.prepareStatement(sql)
+		) {
+			stmt.setLong(1, Long.valueOf(replyId));
+			stmt.setString(2, memberId);
+			stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 }
 

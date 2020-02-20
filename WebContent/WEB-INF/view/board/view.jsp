@@ -60,11 +60,23 @@ ${board.body }
 
 <div>
 <c:forEach items="${replyList }" var="reply">
-<span>${reply.body }</span>
-|
-<span>${reply.memberId }</span>
-|
-<span>${reply.inserted }</span><br>
+	<span>${reply.body }</span>
+	|
+	<span>${reply.memberId }</span>
+	|
+	<span>${reply.inserted }</span><br>
+	
+	<c:if test="${loginUser.memberId eq reply.memberId }">
+	<div>
+		<form action="../reply/delete" method="post">
+			<input name="boardId" value="${reply.boardId }" type="hidden">
+			<input name="replyId" value="${reply.id }" type="hidden">
+			<input value="삭제" type="submit">
+		</form>
+	</div>
+	</c:if>
+
+
 </c:forEach>
 </div>
 
