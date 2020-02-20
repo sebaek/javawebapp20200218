@@ -100,6 +100,36 @@ public class BoardRepo {
 		return board;
 	}
 
+	public boolean deleteBoard(String id, String memberId, String password) {
+		String sql = "DELETE FROM board "
+				+ "WHERE id=? "
+				+ "AND memberid= (SELECT memberid "
+				+ "               FROM member "
+				+ "               WHERE memberid=? "
+				+ "               AND   password=? )";
+		
+		try (
+				Connection con = DBCP.getConnection();
+				PreparedStatement stmt = con.prepareStatement(sql);
+		) {
+			stmt.setLong(1, Long.valueOf(id));
+			stmt.setString(2, memberId);
+			stmt.setString(3, password);
+			
+			int cnt = stmt.executeUpdate();
+			
+			if (cnt < 1) {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return true;
+	}
+
 }
 
 

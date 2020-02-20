@@ -22,5 +22,3 @@ create table board
 
 select * from board order by id desc;
 
-
-
