@@ -31,6 +31,9 @@ ${board.body }
 </div>
 <c:if test="${loginUser.memberId eq board.memberId }">
 <div>
+<a href="modify?id=${board.id }">수정</a>
+</div>
+<div>
 	<button id="board-delete-button">삭제</button>
 	<div id="board-delete-form" style="display:none;">
 		<form action="delete" method="post">

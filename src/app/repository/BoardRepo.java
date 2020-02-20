@@ -130,7 +130,42 @@ public class BoardRepo {
 		return true;
 	}
 
+	public boolean updateBoard(Board board) {
+		String sql = "UPDATE board "
+				+ "SET title=?, "
+				+ "    body=? "
+				+ "WHERE id=?"
+				+ "  AND memberid=? ";
+
+		try (
+			Connection con = DBCP.getConnection();
+			PreparedStatement stmt = con.prepareStatement(sql);
+		) {
+			stmt.setString(1, board.getTitle());
+			stmt.setString(2, board.getBody());
+			stmt.setLong(3, board.getId());
+			stmt.setString(4, board.getMemberId());
+			
+			int cnt = stmt.executeUpdate();
+			
+			if (cnt < 1) {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return true;
+	}
+
 }
+
+
+
+
+
+
 
 
 
