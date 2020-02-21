@@ -47,8 +47,8 @@ public class MainServlet extends HttpServlet {
 		page = (page == null) ? "1" : page;
 		
 		int curPage = Integer.valueOf(page);
-		int beginPage = curPage - 5;
-		int endPage = curPage + 5;
+		int beginPage = curPage - 3;
+		int endPage = curPage + 3;
 		
 		if (beginPage <= 0) {
 			endPage = endPage + 1 + Math.abs(beginPage);
