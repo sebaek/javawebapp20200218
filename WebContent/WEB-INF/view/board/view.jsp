@@ -13,6 +13,10 @@ $(function() {
 	$("#board-delete-button").click(function() {
 		$("#board-delete-form").toggle();
 	});
+	
+	$(".reply-form-toggle-btn").click(function() {
+		$(this).parent().next(".reply-form").toggle();
+	});
 });
 
 </script>
@@ -72,6 +76,19 @@ ${board.body }
 	<span>${reply.inserted }</span><br>
 	
 	<c:if test="${loginUser.memberId eq reply.memberId }">
+	<div>
+	<button class="reply-form-toggle-btn">수정</button>
+	</div>
+	<div class="reply-form" style="display:none; ">
+		<form onsubmit="return confirm('수정하시겠습니까?')" action="../reply/modify" method="post">
+			<input name="boardId" value="${reply.boardId }" type="hidden">
+			<input name="replyId" value="${reply.id }" type="hidden">
+			<input name="body" value="${reply.body }">
+			<input value="수정" type="submit">
+		</form>
+	</div>
+	
+	
 	<div>
 		<form onsubmit="return confirm('삭제하시겠습니까?')" action="../reply/delete" method="post">
 			<input name="boardId" value="${reply.boardId }" type="hidden">
