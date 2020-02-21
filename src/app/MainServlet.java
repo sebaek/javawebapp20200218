@@ -46,12 +46,23 @@ public class MainServlet extends HttpServlet {
 		String page = request.getParameter("page");
 		page = (page == null) ? "1" : page;
 		
+		int curPage = Integer.valueOf(page);
+		int beginPage = curPage - 5;
+		int endPage = curPage + 5;
+		
+		if (beginPage <= 0) {
+			endPage = endPage + 1 + Math.abs(beginPage);
+			beginPage = 1;
+		}
+		
 		// db에서 board list 읽어옴
 //		List<Board> list = repo.listBoard();
 		List<Board> list = repo.listBoard(page);
 		
 		// request attribute에 set
 		request.setAttribute("boardList", list);
+		request.setAttribute("beginPage", beginPage);
+		request.setAttribute("endPage", endPage);
 		
 		// forward
 		request.getRequestDispatcher(view).forward(request, response);

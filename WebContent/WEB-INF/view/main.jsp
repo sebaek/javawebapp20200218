@@ -15,8 +15,21 @@
 <div class="main-container">
 <h1>게시물 목록</h1>
 <my:boardList />
+</div>
+
+<div>
+<c:forEach begin="${beginPage }" end="${endPage }" var="page">
+<c:url value="/" var="curl" >
+	<c:param name="page" value="${page }" />
+</c:url>
+<a href="${curl}">${page }</a> | 
+</c:forEach>
 
 </div>
+
+
+
+
 
 </body>
 </html>
