@@ -12,7 +12,7 @@
 <body>
 <my:navbar />
 
-<div style="width: 80%; margin: auto;">
+<div class="main-container">
 <h1>게시물 목록</h1>
 <my:boardList />
 
