@@ -166,7 +166,7 @@ public class BoardRepo {
 		
 		try (
 			Connection con = DBCP.getConnection();
-			PreparedStatement stmt = con.prepareStatement(sql, new String[] {"id", "inserted"})
+			PreparedStatement stmt = con.prepareStatement(sql, new String[] {"ID", "INSERTED"})
 		) {
 			stmt.setString(1, board.getTitle());
 			stmt.setString(2, board.getBody());
@@ -176,6 +176,7 @@ public class BoardRepo {
 			
 			if (cnt == 1) {
 				ResultSet gen = stmt.getGeneratedKeys();
+				gen.next();
 				board.setId(gen.getLong(1));
 				board.setInserted(gen.getDate(2));
 			}
