@@ -8,7 +8,25 @@ public class Board {
 	private String title;
 	private String body;
 	private Date inserted;
+	private String fileName;
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Board [id=" + id + ", memberId=" + memberId + ", title=" + title + ", body=" + body + ", inserted="
+				+ inserted + ", fileName=" + fileName + ", getFileName()=" + getFileName() + ", getId()=" + getId()
+				+ ", getMemberId()=" + getMemberId() + ", getTitle()=" + getTitle() + ", getBody()=" + getBody()
+				+ ", getInserted()=" + getInserted() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public long getId() {
 		return id;
 	}

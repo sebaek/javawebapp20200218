@@ -159,6 +159,33 @@ public class BoardRepo {
 		return true;
 	}
 
+	public void addBoard(Board board) {
+		String sql = "INSERT INTO board "
+				+ "(title, body, memberId, fileName) "
+				+ "VALUES (?, ?, ?, ?) ";
+		
+		try (
+			Connection con = DBCP.getConnection();
+			PreparedStatement stmt = con.prepareStatement(sql, new String[] {"id", "inserted"})
+		) {
+			stmt.setString(1, board.getTitle());
+			stmt.setString(2, board.getBody());
+			stmt.setString(3, board.getMemberId());
+			stmt.setString(4, board.getFileName());
+			int cnt = stmt.executeUpdate();
+			
+			if (cnt == 1) {
+				ResultSet gen = stmt.getGeneratedKeys();
+				board.setId(gen.getLong(1));
+				board.setInserted(gen.getDate(2));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
 
 

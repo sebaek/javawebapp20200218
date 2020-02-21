@@ -3,12 +3,15 @@ package app.controller.board;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
+import app.bean.Board;
 import app.bean.Member;
 import app.repository.BoardRepo;
 
@@ -16,6 +19,7 @@ import app.repository.BoardRepo;
  * Servlet implementation class BoardAddServlet
  */
 @WebServlet("/board/add")
+@MultipartConfig
 public class BoardAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -67,11 +71,24 @@ public class BoardAddServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String body = request.getParameter("body");
 		
+		Part filePart = request.getPart("file");
+		String fileName = filePart.getSubmittedFileName();
+		
+		// create Board instance
+		Board board = new Board();
+		board.setTitle(title);
+		board.setBody(body);
+		board.setFileName(fileName);
+		board.setMemberId(m.getMemberId());
+		
 		// insert db
-		boolean ok = repo.addBoard(title, body, m.getMemberId());
+//		boolean ok = repo.addBoard(title, body, m.getMemberId());
+		repo.addBoard(board);
+		
+		System.out.println(board);
 		
 		// forward or redirect
-		if (ok) {
+		if (board.getId() != 0) {
 			response.sendRedirect(request.getContextPath());
 		} else {
 			request.setAttribute("title", title);

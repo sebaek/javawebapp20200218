@@ -11,11 +11,12 @@
 <body>
 <h1>글 작성</h1>
 <div>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 <input name="title" placeholder="제목" value="${title }"><br>
 <textarea rows="5" cols="20" name="body">
 ${body }
 </textarea><br>
+<input type="file" accept="image/*" name="file"><br>
 <input type="submit" value="등록">
 </form>
 
