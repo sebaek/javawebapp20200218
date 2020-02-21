@@ -48,7 +48,7 @@ public class MainServlet extends HttpServlet {
 		
 		int curPage = Integer.valueOf(page);
 		int beginPage = curPage - 3;
-		int endPage = curPage + 3;
+		int endPage = curPage + 4;
 		
 		if (beginPage <= 0) {
 			endPage = endPage + 1 + Math.abs(beginPage);
@@ -63,6 +63,7 @@ public class MainServlet extends HttpServlet {
 		request.setAttribute("boardList", list);
 		request.setAttribute("beginPage", beginPage);
 		request.setAttribute("endPage", endPage);
+		request.setAttribute("curPage", curPage);
 		
 		// forward
 		request.getRequestDispatcher(view).forward(request, response);

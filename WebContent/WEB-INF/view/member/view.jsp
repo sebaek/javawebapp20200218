@@ -26,22 +26,14 @@ $(function() {
 </head>
 <body>
 <my:navbar />
+
+<div class="main-container">
+
 <h1>회원 정보</h1>
-<div>
-<c:url value="/member/modify" var="memberModifyUrl" />
-<form method="post" action="${memberModifyUrl}" >
-<input name="memberId" value="${loginUser.memberId }" placeholder="아이디"><br>
-<input id="pw1" name="password" type="password" placeholder="패스워드"><br>
-<input id="pw2" type="password" placeholder="패스워드확인"><br>
-<input name="email" value="${loginUser.email }" type="email" placeholder="이메일"><br>
-<input name="nickName" value="${loginUser.nickName }" placeholder="별명"><br>
-<input type="submit" value="수정">
-</form>
+<my:memberViewForm />
+
+
 </div>
-
-<c:url value="/member/delete" var="memberDeleteUrl" />
-<a href="${memberDeleteUrl }">회원 탈퇴</a>
-
 <div id="message"></div>
 </body>
 </html>

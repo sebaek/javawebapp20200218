@@ -11,14 +11,10 @@
 </head>
 <body>
 <my:navbar />
+
+<div class="main-container">
 <h1>회원 탈퇴</h1>
-<div>
-<c:url value="/member/delete" var="deleteUrl" />
-<form method="post" action="${deleteUrl }">
-<input readonly value="${loginUser.memberId }"><br>
-<input type="password" name="password" placeholder="패스워드"><br>
-<input type="submit" value="탈퇴">
-</form>
+<my:memberDeleteForm />
 </div>
 </body>
 </html>
