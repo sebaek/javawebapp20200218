@@ -189,6 +189,48 @@ public class BoardRepo {
 		}
 	}
 
+	public List<Board> listBoard(String page) {
+		List<Board> list = new ArrayList<>();
+		
+		String sql = "SELECT id, title, body, inserted, "
+				+ "          memberId, fileName "
+				+ "   FROM ("
+				+ "          SELECT row_number() OVER "
+				+ "                  (ORDER BY id DESC) rn, "
+				+ "                 id, title, body, inserted, "
+				+ "                 memberId, fileName "
+				+ "          FROM board "
+				+ "         ) "
+				+ "   WHERE rn BETWEEN ? AND ? ";
+		
+		try (
+				Connection con = DBCP.getConnection();
+				PreparedStatement stmt = con.prepareStatement(sql);
+		) {
+			stmt.setInt(1, (Integer.valueOf(page) - 1) * 5 + 1);
+			stmt.setInt(2, (Integer.valueOf(page)) * 5);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				Board b = new Board();
+				b.setId(rs.getLong(1));
+				b.setTitle(rs.getString(2));
+				b.setBody(rs.getString(3));
+				b.setInserted(rs.getDate(4));
+				b.setMemberId(rs.getString(5));
+				b.setFileName(rs.getString(6));
+				
+				list.add(b);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
 }
 
 

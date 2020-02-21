@@ -43,9 +43,12 @@ public class MainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String page = request.getParameter("page");
+		page = (page == null) ? "1" : page;
 		
 		// db에서 board list 읽어옴
-		List<Board> list = repo.listBoard();
+//		List<Board> list = repo.listBoard();
+		List<Board> list = repo.listBoard(page);
 		
 		// request attribute에 set
 		request.setAttribute("boardList", list);
