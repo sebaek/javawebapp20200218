@@ -12,30 +12,11 @@
 <body>
 <my:navbar />
 
+<div style="width: 80%; margin: auto;">
 <h1>게시물 목록</h1>
-<div>
-<table>
-<tr>
-	<th>id</th>
-	<th>제목</th>
-	<th>작성자</th>
-	<th>작성일시</th>
-</tr>
-<c:forEach items="${boardList }" var="board">
-  <c:url value="/board/view" var="link">
-  	<c:param name="id" value="${board.id }" />
-  </c:url>
-<tr>
-	<td>${board.id }</td>
-	<td><a href="${link }">${board.title }</a></td>
-	<td>${board.memberId }</td>
-	<td>${board.inserted }</td>
-</tr>
-</c:forEach>
+<my:boardList />
 
-</table>
 </div>
-
 
 </body>
 </html>
