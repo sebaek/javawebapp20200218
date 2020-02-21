@@ -89,6 +89,26 @@ public class ReplyRepo {
 		}
 		
 	}
+
+	public void updateReply(String replyId, String memberId, String body) {
+		String sql = "UPDATE reply "
+				+ "SET body=? "
+				+ "WHERE id=? "
+				+ "  AND memberid=? ";
+		
+		try (
+			Connection con = DBCP.getConnection();
+			PreparedStatement stmt = con.prepareStatement(sql)
+		) {
+			stmt.setString(1, body);
+			stmt.setLong(2, Long.valueOf(replyId));
+			stmt.setString(3, memberId);
+			stmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }
 
