@@ -71,7 +71,8 @@ public class BoardRepo {
 
 	public Board getBoardById(String id) {
 		Board board = null;
-		String sql = "SELECT title, body, memberid, inserted "
+		String sql = "SELECT "
+				+ "title, body, memberid, inserted, fileName "
 				+ "FROM board "
 				+ "WHERE id=?";
 		
@@ -90,6 +91,7 @@ public class BoardRepo {
 				board.setBody(rs.getString(2));
 				board.setMemberId(rs.getString(3));
 				board.setInserted(rs.getDate(4));
+				board.setFileName(rs.getString(5));
 			}
 			
 		} catch (Exception e) {

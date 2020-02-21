@@ -24,7 +24,10 @@ $(function() {
 ${board.id } : ${board.title } 
 : ${board.inserted } : ${board.memberId }
 
-<br>
+<div>
+<img src="/static/<%= request.getContextPath() %>/${board.id}/${board.fileName}">
+</div>
+
 <textarea rows="5" cols="20" readonly>
 ${board.body }
 </textarea>
