@@ -29,10 +29,12 @@ $(function() {
 <div>
 ${board.id } : ${board.title } 
 : ${board.inserted } : ${board.memberId }
-
+<br>
+<c:if test="${not empty board.fileName  }" >
 <div>
-<img src="/static/<%= request.getContextPath() %>/${board.id}/${board.fileName}">
+<img src="/static<%= request.getContextPath() %>/${board.id}/${board.fileName}">
 </div>
+</c:if>
 
 <textarea rows="5" cols="20" readonly>
 ${board.body }
