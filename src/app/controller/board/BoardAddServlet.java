@@ -1,7 +1,9 @@
 package app.controller.board;
 
+import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -87,6 +89,9 @@ public class BoardAddServlet extends HttpServlet {
 		
 		System.out.println(board);
 		
+		// store file
+		createFile(filePart, board);
+		
 		// forward or redirect
 		if (board.getId() != 0) {
 			response.sendRedirect(request.getContextPath());
@@ -98,6 +103,30 @@ public class BoardAddServlet extends HttpServlet {
 		
 		
 	}
+
+	private void createFile(Part filePart, Board board) {
+		ServletContext app = getServletContext();
+		String contextRoot = app.getContextPath();
+		
+		String filePath = 
+				"C:/Users/USER/Documents/myworkspace/static"
+				+ contextRoot + "/" + board.getId();
+		
+		File fileDir = new File(filePath);
+		
+		if (!fileDir.exists()) {
+			fileDir.mkdirs();
+		}
+	
+		try {
+			filePart.write(filePath + "/" + filePart.getSubmittedFileName());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	
 	
 	
