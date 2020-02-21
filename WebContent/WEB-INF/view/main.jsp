@@ -10,8 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>메인 페이지</h1>
-
 <my:navbar />
 
 <h1>게시물 목록</h1>
