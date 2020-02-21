@@ -39,6 +39,10 @@ add (
 
 select * from board order by id desc;
 
+select * from 
+    (select row_number() over (order by id desc) rn , id
+    from board order by id desc)
+where rn between 6 and 10;
 
 
 
