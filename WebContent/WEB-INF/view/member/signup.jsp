@@ -31,7 +31,7 @@ $(function() {
 <div class="main-container">
 <h1>회원 가입</h1>
 
-<my:singupForm />
+<my:signupForm />
 
 </div>
 <div id="message">
