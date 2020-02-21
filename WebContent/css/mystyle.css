@@ -4,3 +4,33 @@
 	width: 80%;
 	margin: auto;
 }
+
+.form-element-full-width {
+	width: 100%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	display: inline-block;
+	border: none;
+	background: #f1f1f1;
+}
+
+.form-element-full-width:focus {
+	background-color: #ddd;
+	outline: none;
+}
+
+.form-btn {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition: 0.3s;
+}
+
+.form-btn:hover {
+  background-color: #3e8e41;
+  color: white;
+}

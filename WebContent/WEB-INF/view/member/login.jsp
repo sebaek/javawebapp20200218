@@ -11,14 +11,14 @@
 </head>
 <body>
 <my:navbar />
+
+<div class="main-container">
+
 <h1>로그인</h1>
-<div>
-<form method="post">
-<input name="memberId" placeholder="아이디"><br>
-<input name="password" placeholder="패스워드" type="password"><br>
-<input type="submit" value="로그인">
-</form>
+<my:loginForm />
 </div>
+
+
 <div>
 ${message }
 </div>
