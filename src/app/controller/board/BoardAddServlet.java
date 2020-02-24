@@ -90,7 +90,9 @@ public class BoardAddServlet extends HttpServlet {
 		System.out.println(board);
 		
 		// store file
-		createFile(filePart, board);
+		if (fileName != null && fileName.length() > 0) {
+			createFile(filePart, board);
+		}
 		
 		// forward or redirect
 		if (board.getId() != 0) {
